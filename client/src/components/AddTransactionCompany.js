@@ -1,8 +1,10 @@
 import React, {useState, useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
 
 export const AddTransactionCompany = () => {
-
+    const context = useContext(GlobalContext);
+    //console.log(context);
     return (
         <div>
             <h3>Adicionar nova empresa</h3>
