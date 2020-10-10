@@ -1,6 +1,7 @@
 import React from 'react';
 import { TransactionList } from './components/TransactionList';
-import { AddTransaction  } from './components/AddTransaction';
+import { AddTransactionCompany  } from './components/AddTransactionCompany';
+import { AddTransactionUser  } from './components/AddTransactionCompany';
 import './App.css';
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
       <div className="container">
         <header></header>
         <TransactionList/>
-        <AddTransaction/>
+        <AddTransactionCompany/>
       </div>
     </div>
   );

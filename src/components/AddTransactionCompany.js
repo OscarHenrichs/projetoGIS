@@ -1,11 +1,11 @@
 import React, {useState, useContext } from 'react';
 
 
-export const AddTransaction = () => {
+export const AddTransactionCompany = () => {
 
     return (
         <div>
-            <h3>Adicionar novo usuário</h3>
+            <h3>Adicionar nova empresa</h3>
             <form onSubmit={""}>
                 <div className="form-control">
                 <label htmlFor="text">Nome Fantasia</label>
