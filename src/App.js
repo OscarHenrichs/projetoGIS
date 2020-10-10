@@ -1,13 +1,16 @@
 import React from 'react';
-import {transactionList} from './components/transactionList'
+import { TransactionList } from './components/TransactionList';
+import { AddTransaction  } from './components/AddTransaction';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-
-        <transactionList></transactionList>
-
+    <div>
+      <div className="container">
+        <header></header>
+        <TransactionList/>
+        <AddTransaction/>
+      </div>
     </div>
   );
 }

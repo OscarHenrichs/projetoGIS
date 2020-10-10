@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const transactionList = () => {
+export const TransactionList = () => {
     return (
         <div>
             <h3>Lista de Usuários</h3>
