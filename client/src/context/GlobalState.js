@@ -3,6 +3,25 @@ import AppReducer from './AppReducer';
 import axios from 'axios' ;
 
 const initalState = {
+    transaction : 
+        [{
+            step: 1,
+            cliente_id: '',
+            nome: '', 
+            sobrenome: '', 
+            telefone: '', 
+            email: '',
+            nome_fantasia: '',     
+            razao_social: '',
+            cnpj: '',    
+            cep: '',     
+            endereco: '',
+            numero: '',
+            complemento: '',
+            bairro: '',
+            cidade: '',
+            uf: '',
+        }],
     transactionsCompany: [],
     transactionsUser: [],
     error: null,
@@ -16,12 +35,20 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch ] = useReducer(AppReducer, initalState)
 
     //Actions
+    async function addTransaction(user) {
+            dispatch({
+            type: 'ADD_TRANSACTION',
+            payload: state.transaction               
+            });
+        }
+
+
     async function getTransactionsUsers() {
         try {
             const res = await axios.get('/users');
             dispatch({
                 type: 'GET_USERS',
-                payload: res.data              
+                payload: res.data.user               
             })
             
         } catch (error) {
@@ -32,13 +59,40 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    async function addTransactionsUsers(user) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        try {
+            const res = await axios.post('/users', user, config);
+
+            dispatch({
+                type: 'POST_USERS',
+                payload: res.data.user               
+            })
+            
+        } catch (error) {
+            dispatch({
+                type: 'POST_USERS_ERROR',
+                payload: error.res.data.error
+            })
+        }
+    }
+
+
+
     //Global Provider
     return (<GlobalContext.Provider value={{
+        transaction: state.transaction,
         transactionsCompany: state.transactionsCompany,
         transactionsUser: state.transactionsUser,
         error: state.error,
         loading: state.loading,
-        getTransactionsUsers
+        getTransactionsUsers,
+        addTransactionsUsers,
+        addTransaction
     }}>
         {children}
     </GlobalContext.Provider>);

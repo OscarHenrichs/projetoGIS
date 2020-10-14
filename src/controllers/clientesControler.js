@@ -23,6 +23,34 @@ module.exports = {
         }
     },
 
+    async indexId(req, res) {
+
+        const { cliente_id } = req.params;
+
+        const cliente = await Cliente.findOne(
+            {
+                where: {
+                        id: cliente_id
+                        }
+            });
+
+        try {
+            if ( cliente == "" || cliente == null ) {
+                return res.status(200).send({ message: `Nenhum cliente cadastrado com a ${ cliente_id } `});
+            }
+
+            return res.status(200).send({ cliente });
+
+        } catch (error) {
+
+            return res.status(500).json(
+                { 
+                    sucess: false,
+                    error: 'Server Error' 
+                });
+        }
+    },
+
     async store(req, res) {
         const { 
                 nome_fantasia,  

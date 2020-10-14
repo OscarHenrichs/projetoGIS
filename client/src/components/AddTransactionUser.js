@@ -1,10 +1,12 @@
-import React, {useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
 
 export const AddTransactionUser = () => {
-    const context = useContext(GlobalContext);
-    //console.log(context);
+    const { transaction } = useContext(GlobalContext);
+    const { step } = transaction;
+
+    
     return (
         <div>
             <h3>Adicionar novo usuário</h3>

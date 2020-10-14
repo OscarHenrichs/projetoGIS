@@ -4,12 +4,27 @@ export default (state, action) => {
             return {
                 ...state,
                 loading: false,
-                transactions: action.payload
+                transactionsUser: action.payload
             }
         case 'GET_USERS_ERROR':
             return {
                 ...state,
                 error: action.payload
+            }
+        case 'POST_USERS':
+            return {
+                ...state,
+                transactionsUser: [...state.transactionsUser, action.payload]
+            }
+        case 'POST_USERS_ERROR':
+            return {
+                ...state,
+                error: action.payload
+            }
+        case 'ADD_TRANSACTION':
+            return {
+                ...state,
+                transactions: [...state.transaction]
             }
         default:
             return state;

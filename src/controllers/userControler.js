@@ -23,6 +23,50 @@ module.exports = {
         }
     },
 
+    async indexId(req, res) {
+
+        const { usuario_id, cliente_id} = req.params;
+        console.log(req.params);
+        let user = {};
+        if (( cliente_id != "" & cliente_id != null ) & ( usuario_id != "" & usuario_id != null )) {
+            console.log("*****1*****")
+            user = await User.findOne(
+                {
+                    where: {
+                            id: usuario_id,
+                            cliente_id: cliente_id
+                            }
+                });
+        } else if ( usuario_id != "" & usuario_id != null ) {
+            console.log("*****2*****")
+            user = await User.findOne(
+                {
+                    where: {
+                            id: usuario_id,
+                            }
+                });
+        } else {
+
+            return res.status(200).send({ message: `É necessário pelo meons o parâmetro usuário_id: ${ usuario_id }`});
+            
+        }
+        try {
+            if ( user == "" || user == null ) {
+                return res.status(200).send({ message: `Nenhum cliente cadastrado com a ${ usuario_id } `});
+            }
+
+            return res.status(200).send({ user });
+
+        } catch (error) {
+
+            return res.status(500).json(
+                { 
+                    sucess: false,
+                    error: 'Server Error' 
+                });
+        }
+    },
+
     async store(req, res) {
         const { cliente_id, nome, sobrenome, telefone, email } = req.body;
         
