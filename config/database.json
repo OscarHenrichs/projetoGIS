@@ -1,0 +1,35 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "projetoGIS_development",
+    "host": "localhost",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": true,
+      "underscored": true
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "projetoGIS_test",
+    "host": "localhost",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": true,
+      "underscored": true
+    }
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "projetoGIS_production",
+    "host": "localhost",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": true,
+      "underscored": true
+    }
+  }
+}
