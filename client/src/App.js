@@ -1,5 +1,5 @@
 import React from 'react';
-import { TransactionList } from './components/TransactionList';
+import { TransactionUsersList } from './components/TransactionUsersList';
 import { AddTransactionCompany  } from './components/AddTransactionCompany';
 import { AddTransactionUser  } from './components/AddTransactionCompany';
 
@@ -13,7 +13,7 @@ function App() {
     <div>
       <div className="container">
         <header></header>
-        <TransactionList/>
+        <TransactionUsersList/>
         <AddTransactionCompany/>
       </div>
     </div>
