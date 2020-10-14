@@ -5,6 +5,7 @@ import { GlobalContext } from '../context/GlobalState';
 
 export const TransactionUsersList = () => {
     const { transactionsUser, getTransactionsUsers } = useContext(GlobalContext);
+    
 
     useEffect(() => {
         getTransactionsUsers();

@@ -3,25 +3,8 @@ import AppReducer from './AppReducer';
 import axios from 'axios' ;
 
 const initalState = {
-    transaction : 
-        [{
-            step: 1,
-            cliente_id: '',
-            nome: '', 
-            sobrenome: '', 
-            telefone: '', 
-            email: '',
-            nome_fantasia: '',     
-            razao_social: '',
-            cnpj: '',    
-            cep: '',     
-            endereco: '',
-            numero: '',
-            complemento: '',
-            bairro: '',
-            cidade: '',
-            uf: '',
-        }],
+    step: '',
+    transaction : [],
     transactionsCompany: [],
     transactionsUser: [],
     error: null,
@@ -35,10 +18,10 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch ] = useReducer(AppReducer, initalState)
 
     //Actions
-    async function addTransaction(user) {
+    async function addTransaction(transaction) {
             dispatch({
             type: 'ADD_TRANSACTION',
-            payload: state.transaction               
+            payload: transaction               
             });
         }
 
@@ -71,6 +54,28 @@ export const GlobalProvider = ({ children }) => {
             dispatch({
                 type: 'POST_USERS',
                 payload: res.data.user               
+            })
+            
+        } catch (error) {
+            dispatch({
+                type: 'POST_USERS_ERROR',
+                payload: error.res.data.error
+            })
+        }
+    }
+
+    async function addTransactionsCliente(cliente) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        try {
+            const res = await axios.post('/cliente', user, config);
+
+            dispatch({
+                type: 'POST_USERS',
+                payload: res.data.cliente               
             })
             
         } catch (error) {

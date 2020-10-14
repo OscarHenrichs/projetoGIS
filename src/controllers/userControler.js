@@ -42,7 +42,7 @@ module.exports = {
             user = await User.findOne(
                 {
                     where: {
-                            id: usuario_id,
+                            id: usuario_id
                             }
                 });
         } else {

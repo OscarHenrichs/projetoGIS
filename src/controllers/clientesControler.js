@@ -27,6 +27,8 @@ module.exports = {
 
         const { cliente_id } = req.params;
 
+        console.log( { cliente_id })
+
         const cliente = await Cliente.findOne(
             {
                 where: {
