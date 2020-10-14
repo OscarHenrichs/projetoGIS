@@ -3,13 +3,15 @@ import { GlobalContext } from '../context/GlobalState';
 import { AddTransactionCompany } from './AddTransactionCompany';
 import { AddTransactionUser  } from './AddTransactionUser';
 
+
+
 export const UserForm = () => {
 
     //step
     const [ step, setStep ] = useState(0);
 
     //usuário
-    const [ cliente_id, setCliente_id ] = useState(Math.floor(Math.random() * 100000));
+    const [ cliente_id, setCliente_id ] = useState((Math.floor(Math.random() * 100000)+Date.now()).toString());
     const [ nome, setNome ] = useState('');
     const [ sobrenome, setSobrenome ] = useState('');
     const [ telefone, setTelefone ] = useState('');
@@ -36,6 +38,9 @@ export const UserForm = () => {
     const onSubmit = e => {
         e.preventDefault();
 
+        if ( cnpj.isValid(cnpj) == false ) {
+            setCnpj('')
+        }
         const newTransaction1 = {       
             nome_fantasia,
             razao_social,
@@ -58,7 +63,7 @@ export const UserForm = () => {
         }
         addTransactionsUsers(newTransaction2);
         setStep(0);
-        setCliente_id(Math.floor(Math.random() * 100000));
+        setCliente_id((Math.floor(Math.random() * 100000)+Date.now()).toString());
         setNome('');
         setSobrenome('');
         setTelefone('');
