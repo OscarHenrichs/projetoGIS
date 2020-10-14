@@ -1,4 +1,4 @@
-import React, { useContext, useState} from 'react'
+import React, { useContext, useState, useEffect} from 'react'
 import { GlobalContext } from '../context/GlobalState';
 import { AddTransactionCompany } from './AddTransactionCompany';
 import { AddTransactionUser  } from './AddTransactionUser';
@@ -26,7 +26,12 @@ export const UserForm = () => {
     const [ cidade, setCidade ] = useState('');
     const [ uf, setUf ] = useState('');
 
-    const {addTransactionsCliente, addTransactionsUsers} = useContext(GlobalContext);
+    const {addTransactionsCliente, addTransactionsUsers, transactionsCompany, getTransactionsClientes} = useContext(GlobalContext);
+
+    useEffect(() => {
+        getTransactionsClientes();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     
     const onSubmit = e => {
         e.preventDefault();
@@ -43,18 +48,16 @@ export const UserForm = () => {
             cidade,
             uf
         }
-        const { client } = addTransactionsCliente(newTransaction1);
-        console.log({ client });
-        //setCliente_id(client)
-        // const newTransaction2 = {
-        //     cliente_id,
-        //     nome,
-        //     sobrenome,
-        //     telefone,
-        //     email,
-        // }
-        // addTransactionsUsers(newTransaction2);
-        // setStep(0);
+        addTransactionsCliente(newTransaction1);
+        const newTransaction2 = {
+            cliente_id,
+            nome,
+            sobrenome,
+            telefone,
+            email,
+        }
+        addTransactionsUsers(newTransaction2);
+        setStep(0);
     }
 
     // //Handle changes

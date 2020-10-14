@@ -56,6 +56,23 @@ export const GlobalProvider = ({ children }) => {
 
 
     //Clientes
+    async function getTransactionsClientes() {
+        try {
+            const res = await axios.get('/clientes');
+            dispatch({
+                type: 'GET_CLIENTES',
+                payload: res.data.cliente               
+            })
+            
+        } catch (error) {
+            dispatch({
+                type: 'GET_CLIENTES_ERROR',
+                payload: error.res.data.error
+            })
+        }
+    }
+
+
     async function addTransactionsCliente(cliente) {
         const config = {
             headers: {
@@ -66,13 +83,13 @@ export const GlobalProvider = ({ children }) => {
             const res = await axios.post('/clientes', cliente, config);
 
             dispatch({
-                type: 'POST_USERS',
+                type: 'POST_CLIENTES',
                 payload: res.data.cliente               
             })
             
         } catch (error) {
             dispatch({
-                type: 'POST_USERS_ERROR',
+                type: 'POST_CLIENTES_ERROR',
                 payload: error.res.data.error
             })
         }
@@ -87,6 +104,7 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         getTransactionsUsers,
         addTransactionsUsers,
+        getTransactionsClientes,
         addTransactionsCliente
     }}>
         {children}
