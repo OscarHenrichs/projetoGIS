@@ -12,7 +12,13 @@ module.exports = {
          autoIncrement: true,
          allowNull: false,
          primaryKey: true,
-        },cliente_id: {
+        },
+        email: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          primaryKey: true,
+        },
+        cliente_id: {
           type: DataTypes.INTEGER,
           allowNull: false,
         },
@@ -25,11 +31,7 @@ module.exports = {
           allowNull: false,
         },
         telefone: {
-          type: DataTypes.STRING,
-          allowNull: false,
-        },
-        email: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(11),
           allowNull: false,
         },
         created_at: {

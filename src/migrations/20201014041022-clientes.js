@@ -20,11 +20,11 @@ module.exports = {
         allowNull: false,
       },
       cnpj: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(14),
         allowNull: false,
       },
       cep: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(8),
         allowNull: false,
       },
       endereco: {
@@ -48,7 +48,7 @@ module.exports = {
         allowNull: false,
       },
       uf: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(2),
         allowNull: false,
       },
       created_at: {

@@ -2,6 +2,7 @@ const { Sequelize, ConnectionError } = require('sequelize');
 const dotenv  = require('dotenv').config({ path: '../../config/config.env'});
 const dbConfig = require("../../config/database");
 const User = require('../models/userModel');
+const Cliente = require('../models/clientesModel');
 
 let connection = {}
 switch (process.env.NODE_ENV) {
@@ -21,6 +22,7 @@ switch (process.env.NODE_ENV) {
 }
 
 User.init(connection);
+Cliente.init(connection);
 
 run().catch(error => console.log(error.stack));
 

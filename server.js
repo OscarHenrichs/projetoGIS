@@ -4,6 +4,7 @@ const dotenv  = require('dotenv').config({ path: './config/config.env'});
 const colors  = require('colors');
 const morgan  = require('morgan');
 const userControler = require('./src/routes/userRoutes');
+const clientesRoutes = require('./src/routes/clientesRoutes');
 require('./src/database');
 
 
@@ -11,6 +12,7 @@ const app =  express();
 
 app.use(express.json());
 app.use(userControler);
+app.use(clientesRoutes);
 
 
 //app.get('/', (req, res) => res.send('Hello'))
