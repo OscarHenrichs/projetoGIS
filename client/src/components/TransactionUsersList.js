@@ -11,7 +11,6 @@ export const TransactionUsersList = () => {
         getTransactionsUsers();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    console.log(transactionsUser);
     return (
         <>
             <h3>Lista de Usuários</h3>

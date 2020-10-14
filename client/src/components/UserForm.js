@@ -9,7 +9,7 @@ export const UserForm = () => {
     const [ step, setStep ] = useState(0);
 
     //usuário
-    const [ cliente_id, setCliente_id ] = useState('');
+    const [ cliente_id, setCliente_id ] = useState(Math.floor(Math.random() * 100000));
     const [ nome, setNome ] = useState('');
     const [ sobrenome, setSobrenome ] = useState('');
     const [ telefone, setTelefone ] = useState('');
@@ -26,8 +26,8 @@ export const UserForm = () => {
     const [ cidade, setCidade ] = useState('');
     const [ uf, setUf ] = useState('');
 
-    const {addTransactionsCliente, addTransactionsUsers, transactionsCompany, getTransactionsClientes} = useContext(GlobalContext);
-
+    const {addTransactionsCliente, addTransactionsUsers, getTransactionsClientes, transactionsCompanyLast} = useContext(GlobalContext);
+    
     useEffect(() => {
         getTransactionsClientes();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,7 +48,7 @@ export const UserForm = () => {
             cidade,
             uf
         }
-        addTransactionsCliente(newTransaction1);
+        addTransactionsCliente(newTransaction1)
         const newTransaction2 = {
             cliente_id,
             nome,
@@ -58,6 +58,22 @@ export const UserForm = () => {
         }
         addTransactionsUsers(newTransaction2);
         setStep(0);
+        setCliente_id(Math.floor(Math.random() * 100000));
+        setNome('');
+        setSobrenome('');
+        setTelefone('');
+        setEmail('');
+        setNome_fantasia('');
+        setRazao_social('');
+        setCnpj('');
+        setCep('');
+        setEndereco('');
+        setNumero('');
+        setComplemento('');
+        setBairro('');
+        setCidade('');
+        setUf('')
+        
     }
 
     // //Handle changes

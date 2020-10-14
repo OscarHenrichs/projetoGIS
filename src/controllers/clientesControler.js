@@ -23,6 +23,29 @@ module.exports = {
         }
     },
 
+    async indexLast(req, res, next) {
+        const cliente = await Cliente.findAll({
+            limit: 1,
+            order: [ [ 'createdAt', 'DESC' ]]
+          });
+
+        try {
+            if ( cliente == "" || cliente == null ) {
+                return res.status(200).send({ message: "Nenhum cliente cadastrado"});
+            }
+
+            return res.status(200).send({ cliente });
+
+        } catch (error) {
+
+            return res.status(500).json(
+                { 
+                    sucess: false,
+                    error: 'Server Error' 
+                });
+        }
+    },
+
     async indexPK(req, res, next) {
         const clientes_id = req.params.clientes_id;
 
@@ -46,7 +69,6 @@ module.exports = {
     },
 
     async indexId(req, res, next) {
-
         const clientes_id = req.params.clientes_id;
 
         console.log(  clientes_id )
@@ -72,6 +94,8 @@ module.exports = {
                 });
         }
     },
+
+    
 
     async store(req, res) {
         const { 

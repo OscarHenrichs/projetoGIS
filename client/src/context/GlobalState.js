@@ -4,6 +4,7 @@ import axios from 'axios' ;
 
 const initalState = {
     transactionsCompany: [],
+    transactionsCompanyLast: [],
     transactionsUser: [],
     error: null,
     loading: true
@@ -61,12 +62,28 @@ export const GlobalProvider = ({ children }) => {
             const res = await axios.get('/clientes');
             dispatch({
                 type: 'GET_CLIENTES',
-                payload: res.data.cliente               
+                payload: res.data.cliente              
             })
             
         } catch (error) {
             dispatch({
                 type: 'GET_CLIENTES_ERROR',
+                payload: error.res.data.error
+            })
+        }
+    }
+
+    async function getTransactionsClientesLast() {
+        try {
+            const res = await axios.get('/clientesLast');
+            dispatch({
+                type: 'GET_CLIENTES_LAST',
+                payload: res.data.cliente              
+            })
+            
+        } catch (error) {
+            dispatch({
+                type: 'GET_CLIENTES_LAST_ERROR',
                 payload: error.res.data.error
             })
         }
@@ -105,7 +122,9 @@ export const GlobalProvider = ({ children }) => {
         getTransactionsUsers,
         addTransactionsUsers,
         getTransactionsClientes,
+        getTransactionsClientesLast,
         addTransactionsCliente
+        
     }}>
         {children}
     </GlobalContext.Provider>);
