@@ -44,8 +44,8 @@ export const UserForm = () => {
             uf
         }
         const { client } = addTransactionsCliente(newTransaction1);
-        console.log(client)
-        setCliente_id()
+        console.log({ client });
+        //setCliente_id(client)
         // const newTransaction2 = {
         //     cliente_id,
         //     nome,
