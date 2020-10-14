@@ -3,8 +3,6 @@ import AppReducer from './AppReducer';
 import axios from 'axios' ;
 
 const initalState = {
-    step: '',
-    transaction : [],
     transactionsCompany: [],
     transactionsUser: [],
     error: null,
@@ -18,12 +16,7 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch ] = useReducer(AppReducer, initalState)
 
     //Actions
-    async function addTransaction(transaction) {
-            dispatch({
-            type: 'ADD_TRANSACTION',
-            payload: transaction               
-            });
-        }
+
 
 
     async function getTransactionsUsers() {
@@ -59,11 +52,13 @@ export const GlobalProvider = ({ children }) => {
         } catch (error) {
             dispatch({
                 type: 'POST_USERS_ERROR',
-                payload: error.res.data.error
+                payload: error.res
             })
         }
     }
 
+
+    //Clientes
     async function addTransactionsCliente(cliente) {
         const config = {
             headers: {
@@ -71,7 +66,7 @@ export const GlobalProvider = ({ children }) => {
             }
         }
         try {
-            const res = await axios.post('/cliente', user, config);
+            const res = await axios.post('/clientes', cliente, config);
 
             dispatch({
                 type: 'POST_USERS',
@@ -87,17 +82,15 @@ export const GlobalProvider = ({ children }) => {
     }
 
 
-
     //Global Provider
     return (<GlobalContext.Provider value={{
-        transaction: state.transaction,
         transactionsCompany: state.transactionsCompany,
         transactionsUser: state.transactionsUser,
         error: state.error,
         loading: state.loading,
         getTransactionsUsers,
         addTransactionsUsers,
-        addTransaction
+        addTransactionsCliente
     }}>
         {children}
     </GlobalContext.Provider>);

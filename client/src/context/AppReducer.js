@@ -21,12 +21,5 @@ export default (state, action) => {
                 ...state,
                 error: action.payload
             }
-        case 'ADD_TRANSACTION':
-            return {
-                ...state,
-                transactions: action.payload
-            }
-        default:
-            return state;
     }
 }

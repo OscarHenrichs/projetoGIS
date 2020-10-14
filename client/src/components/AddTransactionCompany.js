@@ -1,19 +1,19 @@
-import React, {useState, useContext } from 'react';
-import { GlobalContext } from '../context/GlobalState';
-import { UserForm } from './UserForm'
+import React from 'react';
 
 
-export const AddTransactionCompany = ({
-    nome_fantasia, setNome_fantasia, 
-    razao_social, setRazao_social, 
-    cnpj, setCnpj,
-    cep, setCep,
-    endereco, setEndereco,
-    numero, setNumero,
-    complemento, setComplemento,
-    bairro, setBairro,
-    cidade, setCidade,
-    uf, setUf 
+
+export const AddTransactionCompany = (
+    {
+        nome_fantasia, setNome_fantasia, 
+        razao_social, setRazao_social, 
+        cnpj, setCnpj,
+        cep, setCep,
+        endereco, setEndereco,
+        numero, setNumero,
+        complemento, setComplemento,
+        bairro, setBairro,
+        cidade, setCidade,
+        uf, setUf 
     }) => {
   
     return (

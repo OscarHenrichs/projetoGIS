@@ -3,7 +3,7 @@ const Cliente = require('../models/clientesModel');
 
 
 module.exports = {
-    async index(req, res) {
+    async index(req, res, next) {
         const cliente = await Cliente.findAll();
 
         try {
@@ -23,22 +23,42 @@ module.exports = {
         }
     },
 
-    async indexId(req, res) {
+    async indexPK(req, res, next) {
+        const clientes_id = req.params.clientes_id;
 
-        const { cliente_id } = req.params;
+        const cliente = await Cliente.findByPk(clientes_id);
+        console.log(clientes_id);
+        try {
+            if ( cliente == "" || cliente == null ) {
+                return res.status(200).send({ message: "Nenhum cliente cadastrado"});
+            }
 
-        console.log( { cliente_id })
+            return res.status(200).send({ cliente });
 
+        } catch (error) {
+
+            return res.status(500).json(
+                { 
+                    sucess: false,
+                    error: 'Server Error' 
+                });
+        }
+    },
+
+    async indexId(req, res, next) {
+
+        const clientes_id = req.params.clientes_id;
+
+        console.log(  clientes_id )
         const cliente = await Cliente.findOne(
             {
                 where: {
-                        id: cliente_id
+                        id: clientes_id
                         }
             });
-
         try {
             if ( cliente == "" || cliente == null ) {
-                return res.status(200).send({ message: `Nenhum cliente cadastrado com a ${ cliente_id } `});
+                return res.status(200).send({ message: `Nenhum cliente cadastrado com a ${ clientes_id } `});
             }
 
             return res.status(200).send({ cliente });

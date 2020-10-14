@@ -25,12 +25,37 @@ export const UserForm = () => {
     const [ bairro, setBairro ] = useState('');
     const [ cidade, setCidade ] = useState('');
     const [ uf, setUf ] = useState('');
+
+    const {addTransactionsCliente, addTransactionsUsers} = useContext(GlobalContext);
     
-    // const prevStep = () => {
-    //     transaction.setState({
-    //         step: { step } - 1
-    //     })
-    // }
+    const onSubmit = e => {
+        e.preventDefault();
+
+        const newTransaction1 = {       
+            nome_fantasia,
+            razao_social,
+            cnpj,
+            cep,
+            endereco,
+            numero,
+            complemento,
+            bairro,
+            cidade,
+            uf
+        }
+        const { client } = addTransactionsCliente(newTransaction1);
+        console.log(client)
+        setCliente_id()
+        // const newTransaction2 = {
+        //     cliente_id,
+        //     nome,
+        //     sobrenome,
+        //     telefone,
+        //     email,
+        // }
+        // addTransactionsUsers(newTransaction2);
+        // setStep(0);
+    }
 
     // //Handle changes
     // const handleChange = input => e => {
@@ -49,27 +74,25 @@ export const UserForm = () => {
             <>
                 <AddTransactionCompany 
                     nome_fantasia={nome_fantasia}
-                    setNome_fantasia={setNome_fantasia}
+                        setNome_fantasia={setNome_fantasia}
                     razao_social={razao_social}
-                    setRazao_social={setRazao_social}
+                        setRazao_social={setRazao_social}
                     cnpj={cnpj}
-                    setCnpj={setCnpj}
+                        setCnpj={setCnpj}
                     cep={cep}
-                    setCep={setCep}
-                    cnpj={cnpj}
-                    setCnpj={setCnpj}
+                        setCep={setCep}
                     endereco={endereco}
-                    setEndereco={setEndereco}
+                        setEndereco={setEndereco}
                     numero={numero}
-                    setNumero={setNumero}
+                        setNumero={setNumero}
                     complemento={complemento}
-                    setComplemento={setComplemento}
+                        setComplemento={setComplemento}
                     bairro={bairro}
-                    setBairro={setBairro}
+                        setBairro={setBairro}
                     cidade={cidade}
-                    setCidade={setCidade}
+                        setCidade={setCidade}
                     uf={uf}
-                    setUf={setUf}
+                        setUf={setUf}
                     />
                 <button className="btn" onClick={() => setStep(2)}>Prosseguir</button>
                 <button className="btn" onClick={() => setStep(0)}>Voltar</button>
@@ -89,7 +112,7 @@ export const UserForm = () => {
                     email={email}
                     setEmail={setEmail}
                     />
-                <button className="btn" onClick={() => setStep(1)}>Salvar</button>
+                <button className="btn" onClick={onSubmit}>Salvar</button>
                 <button className="btn" onClick={() => setStep(1)}>Voltar</button>
             </>
         )

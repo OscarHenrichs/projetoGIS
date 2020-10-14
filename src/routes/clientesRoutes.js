@@ -6,7 +6,8 @@ const routes = express.Router();
 // @user routes
 // @access public
 routes.get('/clientes', clientesControler.index);
-routes.get('/clientesOne/:clientes_id', clientesControler.indexId);
+routes.get('/clientes/:clientes_id', clientesControler.indexId);
+routes.get('/clientesPK/:clientes_id', clientesControler.indexPK);
 routes.post('/clientes', clientesControler.store);
 routes.put('/clientes/:clientes_id', clientesControler.update);
 routes.delete('/clientes/:clientes_id', clientesControler.delete);
